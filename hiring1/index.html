@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Highlight — Where builders stand out</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            background: #fbcc03;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        div {
+            height: 100vh;
+            width: 100vh;
+            overflow-y:auto;
+            overflow-x: hidden;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Viewport wider than 1:1.4 (5:7) → pin to full height, center column */
+        @media (min-aspect-ratio: 5/7) {
+            body {
+                height: 100vh;
+                overflow: hidden;
+            }
+            div {
+                height: 100vh;
+                aspect-ratio: 5/7;
+            }
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img src="page.png" alt="Highlight - Where builders stand out" />
+</div>
+</body>
+</html>
