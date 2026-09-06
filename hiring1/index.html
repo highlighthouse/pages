@@ -1,50 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Highlight — Where builders stand out</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html, body {
-            height: 100%;
-            background: #fbcc03;
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-        }
-        div {
-            height: 100vh;
-            width: 100vh;
-            overflow-y:auto;
-            overflow-x: hidden;
-        }
-
-        img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        /* Viewport wider than 1:1.4 (5:7) → pin to full height, center column */
-        @media (min-aspect-ratio: 5/7) {
-            body {
-                height: 100vh;
-                overflow: hidden;
-            }
-            div {
-                height: 100vh;
-                aspect-ratio: 5/7;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Highlight - Where builders stand out</title>
+<meta name="description" content="Highlight is an AI-first mobile gaming studio building games that couldn't be built before AI, where creation is the gameplay itself.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-<div>
-    <img src="page.png" alt="Highlight - Where builders stand out" />
-</div>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html">Highlight <span>Where builders stand out</span></a>
+    <nav class="nav">
+      <a href="#about"><span>Studio</span><span>Studio</span></a>
+      <a href="#roles"><span>Roles</span><span>Roles</span></a>
+      <a href="#contact"><span>Contact</span><span>Contact</span></a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO — VARIANT A ============ -->
+<section class="hero">
+  <div class="hero__grid">
+    <div class="hero__type">
+      <div>
+        <p class="hero__kicker">AI-first mobile gaming studio</p>
+        <h1 class="display">We're building<br>the next<br>generation of<br>mobile games</h1>
+      </div>
+      <div class="hero__sub">
+        <p class="lead">Games that couldn't be built before AI, where creation <em>is</em> the gameplay itself.</p>
+        <a class="btn" href="#roles">See open roles</a>
+      </div>
+    </div>
+    <div class="hero__img">
+      <img src="assets/img/hero.jpg"
+           alt="A Highlight avatar blowing a bubblegum bubble, in a pink and green patterned coat and matching trousers"
+           width="1200" height="1600" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 STUDIO ============ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <span class="snum">01 - The studio</span>
+    <h2 class="h2">Creation is<br>the gameplay</h2>
+    <div class="body" style="margin-top:36px">
+      <p><strong>Highlight</strong> is an AI-first mobile gaming studio. We build games that couldn't be built before AI - games where creation <em>is</em> the gameplay itself. Not AI bolted onto an existing genre, but a new kind of game: creative, interactive, and powered by AI at the core.</p>
+      <p>We're a funded studio, officially launched in January 2026. A small founding team building a real product - and everyone here owns a part of it from day one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 FOUNDERS ============ -->
+<section class="section section--muted pat-grid">
+  <div class="wrap">
+    <div class="split split--5-7">
+      <div>
+        <span class="snum">02 - The founders</span>
+        <h2 class="h2">Built and<br>scaled before</h2>
+      </div>
+      <div class="body">
+        <p style="font-size:1.25rem;line-height:1.4;font-weight:500">Founded by <strong>Hagit Hashimshony</strong> and <strong>Tal Rapoport</strong>, with 15+ years in gaming between them. Former executives at <strong>Playstudios</strong> and alumni of <strong>8200</strong>, who built and scaled mobile games from the ground up, serving millions of users worldwide.</p>
+        <p style="margin-top:28px"><span class="mark" style="font-weight:900;text-transform:uppercase;letter-spacing:-.02em;font-size:1.35rem">Now building something new.</span></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 03 ROLES ============ -->
+<section id="roles">
+  <div class="wrap" style="padding-top:96px;padding-bottom:56px">
+    <span class="snum">03 - Open roles</span>
+    <h2 class="h2">Three seats<br>on the<br>founding team</h2>
+  </div>
+
+  <div class="roles">
+    <a class="role-card" href="roles/liveops-manager/index.html">
+      <div class="role-card__inner">
+        <div>
+          <span class="snum">Role 01</span>
+          <h3 class="h3">LiveOps<br>Manager</h3>
+        </div>
+        <p class="role-card__desc">Own the live side of the game: events, players, collections, rewards, and the economy behind them.</p>
+        <div class="role-card__go">
+          <span>Read the role</span>
+          <span class="role-card__arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="role-card" href="roles/ai-engineer/index.html">
+      <div class="role-card__inner">
+        <div>
+          <span class="snum">Role 02</span>
+          <h3 class="h3">AI<br>Engineer</h3>
+        </div>
+        <p class="role-card__desc">Build end-to-end image and video creative pipelines embedded directly in the game loop. Real time, no manual fixes.</p>
+        <div class="role-card__go">
+          <span>Read the role</span>
+          <span class="role-card__arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="role-card" href="roles/unity-engineer/index.html">
+      <div class="role-card__inner">
+        <div>
+          <span class="snum">Role 03</span>
+          <h3 class="h3">Unity<br>Engineer</h3>
+        </div>
+        <p class="role-card__desc">Build the bridge between AI systems and mobile gameplay. Own the Unity client end to end.</p>
+        <div class="role-card__go">
+          <span>Read the role</span>
+          <span class="role-card__arrow">→</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ 04 CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="snum">04 - Contact</span>
+    <h2 class="h2">Reach out.<br>We'd love to<br>hear from you</h2>
+    <a class="contact__mail" href="mailto:joinus@trulyhighlighted.com">joinus@trulyhighlighted.com</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <span>Highlight</span>
+    <span>AI-first mobile gaming studio</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
 </body>
 </html>

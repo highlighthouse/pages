@@ -1,0 +1,584 @@
+/* ============================================================
+   HIGHLIGHT — Swiss International Typographic Style
+   Accent: Bubblegum #FF4D9D
+   ============================================================ */
+
+/* ---------- 1. TOKENS ---------- */
+:root {
+  --bg:      #FFFFFF;
+  --fg:      #000000;
+  --muted:   #F2F2F2;
+  --accent:  #FF4D9D;
+  --border:  #000000;
+
+  --bw-thick: 4px;
+  --bw-thin:  2px;
+
+  --gutter: 24px;
+  --maxw:   1440px;
+
+  --t-fast: 150ms linear;
+  --t-base: 200ms ease-out;
+}
+
+/* ---------- 2. RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* Global paper-grain noise */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+::selection { background: var(--accent); color: #fff; }
+
+:focus-visible {
+  outline: var(--bw-thin) solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- 3. TEXTURE PATTERNS ---------- */
+.pat-grid {
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.pat-dots {
+  background-image: radial-gradient(rgba(0,0,0,.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.pat-diag {
+  background-image: repeating-linear-gradient(
+    45deg, rgba(0,0,0,.02) 0 1px, transparent 1px 10px);
+}
+
+/* ---------- 4. LAYOUT ---------- */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.rule { border-top: var(--bw-thick) solid var(--border); }
+.rule-thin { border-top: var(--bw-thin) solid var(--border); }
+
+.section { padding: 96px 0; }
+.section--tight { padding: 64px 0; }
+.section--muted { background: var(--muted); }
+
+/* ---------- 5. TYPOGRAPHY ---------- */
+.snum {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.display {
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  text-transform: uppercase;
+  /* min() caps the headline by viewport width on narrow screens: the word
+     GENERATION cannot wrap, and at the 3.4rem floor it overflowed the grid
+     track below ~418px. Identical to clamp() at 418px and above. */
+  font-size: min(13vw, clamp(3.4rem, 11vw, 10rem));
+}
+
+.h2 {
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  text-transform: uppercase;
+  font-size: clamp(2.4rem, 6.5vw, 5.5rem);
+}
+
+.h3 {
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: clamp(1.75rem, 3.6vw, 3rem);
+}
+
+.h4 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.lead {
+  font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+  line-height: 1.4;
+  font-weight: 500;
+  max-width: 30ch;
+}
+
+.body { max-width: 68ch; }
+.body p + p { margin-top: 1.1em; }
+.body strong { font-weight: 700; }
+.body em { font-style: italic; }
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.meta {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.mark { background: var(--accent); color: #fff; padding: 0 .18em; }
+
+/* ---------- 6. HEADER ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: var(--bw-thick) solid var(--border);
+}
+.site-header__inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  height: 68px;
+  /* Full bleed rather than capped at --maxw: on a wide screen the brand sits
+     hard left and the nav hard right, lining up with the hero below, which is
+     also full width. Only the gutter separates them from the viewport edge. */
+  max-width: none;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 900;
+  font-size: 21px;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+.brand span {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding-left: 12px;
+  border-left: var(--bw-thin) solid var(--border);
+}
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 1.15em;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.nav a span {
+  display: block;
+  transition: transform var(--t-fast);
+}
+.nav a span:last-child { color: var(--accent); }
+.nav a:hover span { transform: translateY(-100%); }
+
+@media (max-width: 640px) {
+  .brand span { display: none; }
+  .nav { gap: 18px; }
+}
+
+/* Below ~420px the brand plus the three nav items no longer fit on one row and
+   CONTACT was pushed past the right edge, scrolling the whole page sideways.
+   Tighten the header only — every other element already fits. */
+@media (max-width: 420px) {
+  .brand { font-size: 18px; }
+  .nav { gap: 14px; }
+  .nav a { font-size: 11px; letter-spacing: .1em; }
+}
+
+@media (max-width: 340px) {
+  .brand { font-size: 16px; }
+  .nav { gap: 10px; }
+  .nav a { font-size: 10px; letter-spacing: .06em; }
+}
+
+/* ---------- 7. IMAGE PLACEHOLDERS ---------- */
+.imgph {
+  position: relative;
+  border: var(--bw-thick) solid var(--border);
+  background: var(--muted);
+  background-image: repeating-linear-gradient(
+    45deg, rgba(0,0,0,.05) 0 2px, transparent 2px 14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.imgph::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px dashed rgba(0,0,0,.28);
+  pointer-events: none;
+}
+.imgph__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 24px;
+}
+.imgph__no {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .1em;
+  padding: 5px 11px;
+  margin-bottom: 14px;
+}
+.imgph__name {
+  font-weight: 900;
+  font-size: clamp(.95rem, 1.6vw, 1.35rem);
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.imgph__spec {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.55);
+}
+.imgph__note {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.35;
+  max-width: 30ch;
+  margin-inline: auto;
+  color: rgba(0,0,0,.55);
+}
+
+.ar-3x4  { aspect-ratio: 3 / 4; }
+.ar-1x1  { aspect-ratio: 1 / 1; }
+.ar-16x9 { aspect-ratio: 16 / 9; }
+.ar-5x7  { aspect-ratio: 5 / 7; }
+
+/* ---------- 8. HERO ---------- */
+.hero { border-bottom: var(--bw-thick) solid var(--border); }
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  min-height: calc(100vh - 68px);
+}
+.hero__type {
+  padding: 72px var(--gutter) 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: var(--bw-thick) solid var(--border);
+}
+.hero__kicker {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+.hero__sub {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 32px;
+  justify-content: space-between;
+}
+.hero__img { padding: 0; }
+.hero__img .imgph {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+/* The hero image fills its grid column edge to edge and carries no border of
+   its own -- the black rule comes from the grid divider. */
+.hero__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Variant B — full bleed */
+.hero--bleed .hero__grid { grid-template-columns: 1fr; position: relative; }
+.hero--bleed .hero__img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero--bleed .hero__img .imgph { width: 100%; height: 100%; aspect-ratio: auto; }
+.hero--bleed .hero__type {
+  position: relative;
+  z-index: 2;
+  border-right: 0;
+  max-width: 1000px;
+}
+.hero--bleed .display span,
+.hero--bleed .hero__kicker span,
+.hero--bleed .hero__sub .lead {
+  background: #fff;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: .04em .16em;
+}
+
+/* ---------- 9. SPLIT GRIDS ---------- */
+.split {
+  display: grid;
+  gap: 48px;
+  align-items: start;
+}
+.split--7-5 { grid-template-columns: 7fr 5fr; }
+.split--5-7 { grid-template-columns: 5fr 7fr; }
+.split--8-4 { grid-template-columns: 8fr 4fr; }
+.split--4-8 { grid-template-columns: 4fr 8fr; }
+
+/* ---------- 10. ROLE CARDS ---------- */
+.roles { border-top: var(--bw-thick) solid var(--border); }
+.role-card {
+  display: block;
+  border-bottom: var(--bw-thick) solid var(--border);
+  padding: 40px var(--gutter);
+  transition: background var(--t-base), color var(--t-base);
+}
+.role-card__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 5fr 5fr 2fr;
+  gap: 32px;
+  align-items: center;
+}
+.role-card__desc { font-size: 1rem; line-height: 1.45; max-width: 46ch; }
+.role-card__go {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.role-card__arrow {
+  width: 40px; height: 40px;
+  border: var(--bw-thin) solid currentColor;
+  display: grid; place-items: center;
+  font-size: 17px; line-height: 1;
+  transition: transform var(--t-base);
+}
+.role-card:hover { background: var(--accent); color: #fff; }
+.role-card:hover .snum { color: #fff; }
+.role-card:hover .role-card__arrow { transform: rotate(-45deg); }
+
+/* ---------- 11. LISTS ---------- */
+.list-bul li,
+.list-arrow li,
+.list-plus li {
+  position: relative;
+  padding: 16px 0 16px 44px;
+  border-bottom: 1px solid rgba(0,0,0,.16);
+  line-height: 1.45;
+}
+.list-bul li:first-child,
+.list-arrow li:first-child,
+.list-plus li:first-child { border-top: 1px solid rgba(0,0,0,.16); }
+
+.list-bul li::before,
+.list-arrow li::before,
+.list-plus li::before {
+  position: absolute;
+  left: 0;
+  top: 16px;
+  font-weight: 900;
+  color: var(--accent);
+  width: 28px;
+}
+.list-bul li::before   { content: '■'; font-size: 10px; top: 20px; }
+.list-arrow li::before { content: '→'; }
+.list-plus li::before  { content: '+'; }
+
+/* ---------- 12. BUTTON ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60px;
+  padding: 0 36px;
+  background: var(--fg);
+  color: #fff;
+  border: var(--bw-thick) solid var(--border);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.btn:hover { background: var(--accent); border-color: var(--accent); }
+.btn--ghost { background: transparent; color: var(--fg); }
+.btn--ghost:hover { background: var(--fg); color: #fff; border-color: var(--fg); }
+
+/* ---------- 13. CONTACT / FOOTER ---------- */
+.contact {
+  background: var(--fg);
+  color: #fff;
+  padding: 96px 0;
+}
+.contact .snum { color: var(--accent); }
+.contact__mail {
+  display: inline-block;
+  margin-top: 28px;
+  font-weight: 900;
+  font-size: clamp(1.4rem, 4.4vw, 3.4rem);
+  letter-spacing: -.035em;
+  border-bottom: var(--bw-thick) solid var(--accent);
+  transition: color var(--t-fast);
+  word-break: break-word;
+}
+.contact__mail:hover { color: var(--accent); }
+
+.site-footer {
+  border-top: var(--bw-thick) solid var(--border);
+  padding: 28px 0;
+}
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* ---------- 14. ROLE PAGE ---------- */
+.role-hero {
+  border-bottom: var(--bw-thick) solid var(--border);
+  padding: 64px 0 56px;
+}
+.role-hero__back {
+  display: inline-block;
+  margin-bottom: 36px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  border-bottom: var(--bw-thin) solid var(--border);
+  padding-bottom: 3px;
+}
+.role-hero__back:hover { color: var(--accent); border-color: var(--accent); }
+.role-hero__meta {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.role-hero__meta li {
+  border: var(--bw-thin) solid var(--border);
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.rsec {
+  padding: 72px 0;
+  border-bottom: var(--bw-thin) solid rgba(0,0,0,.2);
+}
+.rsec:last-of-type { border-bottom: 0; }
+.rsec__grid {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  gap: 48px;
+}
+.rsec__head { position: sticky; top: 100px; align-self: start; }
+
+.onemore {
+  background: var(--muted);
+  border: var(--bw-thick) solid var(--border);
+  padding: 48px;
+}
+.onemore .snum { display: flex; align-items: center; gap: 10px; }
+
+/* ---------- 15. RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+  .split--7-5, .split--5-7, .split--8-4, .split--4-8 { grid-template-columns: 1fr; gap: 36px; }
+  .rsec__grid { grid-template-columns: 1fr; gap: 24px; }
+  .rsec__head { position: static; }
+  .role-card__inner { grid-template-columns: 1fr 1fr; }
+  .role-card__go { grid-column: 1 / -1; justify-self: start; }
+}
+
+@media (max-width: 860px) {
+  .hero__grid { grid-template-columns: 1fr; min-height: 0; }
+  .hero__type { border-right: 0; border-bottom: var(--bw-thick) solid var(--border); padding: 48px var(--gutter); }
+  .hero__img .imgph { aspect-ratio: 4 / 5; }
+  /* Stacked above the copy: keep the portrait's natural 3:4 rather than
+     cropping it to the column height. */
+  .hero__img img { height: auto; }
+  .hero--bleed .hero__img { position: relative; }
+  .hero--bleed .hero__type { border-bottom: 0; }
+}
+
+@media (max-width: 640px) {
+  .section { padding: 64px 0; }
+  .rsec { padding: 48px 0; }
+  .contact { padding: 64px 0; }
+  .onemore { padding: 28px; }
+  .role-card__inner { grid-template-columns: 1fr; gap: 18px; }
+  .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
