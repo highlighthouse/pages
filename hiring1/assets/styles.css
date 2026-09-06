@@ -172,6 +172,21 @@ ul { list-style: none; }
   background: var(--bg);
   border-bottom: var(--bw-thick) solid var(--border);
 }
+/* iOS Safari paints the page behind its translucent top toolbar while pinning
+   a sticky header below it, so copy that has scrolled past shows through in
+   the strip above the nav. Carry the header's white ground upward to fill that
+   strip. It sits above the viewport when the page is at rest, so it changes
+   nothing on desktop, and it also covers rubber-band overscroll at the top. */
+.site-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 240px;
+  background: var(--bg);
+  pointer-events: none;
+}
 .site-header__inner {
   display: flex;
   align-items: stretch;
